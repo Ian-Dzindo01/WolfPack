@@ -1,0 +1,21 @@
+Users:
+    Email Verification
+    MFA
+
+Tweets:
+    Videos - Media Storage Server
+    Images - Media Storage Server
+    Links
+    GIFs
+
+Functionalities:
+    Messaging
+    Likes
+    Shares
+    Reports
+
+Pages:
+    Profiles
+    Company Pages
+    Hashtags
+    Communities
