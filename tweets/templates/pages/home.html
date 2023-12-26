@@ -1,20 +1,19 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}    
 
+{% block head_title %}
+Wolfies
+{% endblock head_title%}
 
-{% block headtitle %}
-Love volwes
-{% endblock headtitle%}
 
 {% block content %}
-Welcome to WolfPack!
+Welcome to WolfPack
 
-<div id="tweets">
-    Loading ...
+<div id='tweets'> <!--main div-->
+    Loading...
 </div>
 
 <script>
-const tweetsElement = document.getElementById("tweets")
-tweetsElement.innerHTML = 'Loading...'
+const tweetsElement = document.getElementById("tweets")  //documents JS stuff
 
 const xhr = new XMLHttpRequest()
 const method = 'GET'
@@ -22,31 +21,41 @@ const url = "/tweets"
 const responseType = "json"
 
 
-// when we will want to implement sharing, retweeting, liking functionality this is going to have to be replaced
-function formatTweetElement(tweet){
-    var formattedTweet =  "<div class='mb-4 tweet' id='tweet-'" + tweet.id + "'><p>" + tweet.content + "</p></div>"
+function handleDidLike (tweet_id, currentCount) {       
+    console.log(tweet_id, currentCount)
+    return 
+}
+
+function LikeBtn(tweet) {                                 // like button implementation
+    return "<button class='btn btn-primary btn-sm' onclick=handleDidLike(" + 
+    tweet.id + "," + tweet.likes + ")>" + tweet.likes + " Likes</button>"
+}
+
+function formatTweetElement(tweet) {                          // a function to format tweets
+    var formattedTweet = "<div class='mb-4 tweet' id='tweet-" + tweet.id 
+    + "'><p>" + tweet.content + 
+        "</p><div class='btn-group'>" + LikeBtn(tweet) +
+        "</div></div>"
     return formattedTweet
 }
 
-xhr.responseType = responseType
+xhr.responseType = responseType 
 xhr.open(method, url)
 
 xhr.onload = function() {
-    const serverResponse = xhr.response
-    var listedItems = serverResponse.response
+    const serverResponse = xhr.response                 // httprequests response
+    const listedItems = serverResponse.response        // grab all listed items 
     var finalTweetStr = ""
-
     var i;
-    for (i=0; i<listedItems.length; i++) {
+    for (i=0;i<listedItems.length; i++) {              // looping through all tweets and formatting them for output
         var tweetObj = listedItems[i]
         var currentItem = formatTweetElement(tweetObj)
         finalTweetStr += currentItem
     }
     tweetsElement.innerHTML = finalTweetStr
 }
+xhr.send()
 
- xhr.send()     
+
 </script>
-
 {% endblock content %}
-
