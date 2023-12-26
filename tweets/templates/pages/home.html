@@ -6,9 +6,15 @@ Wolfies
 
 
 {% block content %}
-Welcome to WolfPack
 
-<div id='tweets'> <!--main div-->
+<div class='row text-center'> 
+    <div class="col">
+        <h1>Welcome to WolfPack</h1>
+    </div>        
+</div>
+
+
+<div class='row' id='tweets'> <!--main div-->
     Loading...
 </div>
 
@@ -32,7 +38,7 @@ function LikeBtn(tweet) {                                 // like button impleme
 }
 
 function formatTweetElement(tweet) {                          // a function to format tweets
-    var formattedTweet = "<div class='mb-4 tweet' id='tweet-" + tweet.id 
+    var formattedTweet = "<div class='col-12 border-top border-bottom py-3 mb-4 tweet' id='tweet-" + tweet.id 
     + "'><p>" + tweet.content + 
         "</p><div class='btn-group'>" + LikeBtn(tweet) +
         "</div></div>"
@@ -53,7 +59,7 @@ xhr.onload = function() {
         finalTweetStr += currentItem
     }
     tweetsElement.innerHTML = finalTweetStr
-}
+}   
 xhr.send()
 
 

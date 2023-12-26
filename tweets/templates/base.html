@@ -11,8 +11,11 @@
     <title>Wolfpack {% block headtitle %}{% endblock headtitle%}</title>
   </head>
   <body>
-    {% block content %}
-    {% endblock content %}
+    {% include "components/navbar.html" %}
+    <div class="'container-fluid">
+      {% block content %}
+      {% endblock content %}
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
