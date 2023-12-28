@@ -8,9 +8,20 @@ Wolfies
 {% block content %}
 
 <div class='row text-center'> 
-    <div class="col">
+    <div class='col'>
         <h1>Welcome to WolfPack</h1>
     </div>        
+</div>
+
+<div class='row'>
+    <div class='col-md-4 mx-auto col-10'>
+        <form class='form' method='POST' action='/create-tweet'>
+            {% csrf_token %}
+            <input type="hidden" value="/" name="next">
+            <textarea class="form-control" name="content" placeholder="Your Post..."></textarea>
+            <button type="submit" button="btn btn-primary">Post</button>
+        </form>
+    </div>
 </div>
 
 

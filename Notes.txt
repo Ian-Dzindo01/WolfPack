@@ -1,4 +1,6 @@
 Users:
+    Login 
+    Logout
     Email Verification
     MFA
 
@@ -9,6 +11,7 @@ Tweets:
     GIFs
 
 Functionalities:
+    Who follows who
     Messaging
     Likes
     Shares
