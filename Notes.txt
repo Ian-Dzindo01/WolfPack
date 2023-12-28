@@ -11,7 +11,7 @@ Tweets:
     GIFs
 
 Functionalities:
-    Who follows who
+    Who follows Who
     Messaging
     Likes
     Shares
