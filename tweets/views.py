@@ -25,7 +25,7 @@ def tweet_create_view(request, *arg, **kwargs):
 
 def tweet_list_view(request, *args, **kwargs):
     qs = Tweet.objects.all()
-    tweets_list = [{"id":x.id, "content": x.content, "likes":random.randint(0, 2000)} for x in qs]   # implement a real like function, working on rands now 
+    tweets_list = [x.serialize() for x in qs]   # implement a real like function, working on rands now 
     data = {
         "isUser":False,                       # change this in the future
         "response": tweets_list
