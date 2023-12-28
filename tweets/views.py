@@ -3,7 +3,7 @@ from django.http import HttpResponse, Http404, JsonResponse
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.conf import settings
 
-from .forms import TweetForm
+from .forms import TweetForm, RegisterForm
 from .models import Tweet
 import random 
 
@@ -54,3 +54,8 @@ def tweet_detail_view(request, tweet_id, *args, **kwargs):    # output additiona
         status = 404
 
     return JsonResponse(data, status=status)
+
+def sign_up(request):
+    if request.method == 'GET':
+        form = RegisterForm()
+        return render(request, 'registration/register.html', { 'form': form})   

@@ -1,6 +1,9 @@
 from django import forms
 from .models import Tweet
 
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+
 MAX_POST_LENGTH = 300
 
 class TweetForm(forms.ModelForm):
@@ -13,5 +16,10 @@ class TweetForm(forms.ModelForm):
         if len(content) > MAX_POST_LENGTH:
             raise forms.ValidationError("Post too long. Please try writing a shorter post.")
         return content
+    
+class RegisterForm(UserCreationForm):
+    class Meta:
+        model=User
+        fields = ['username','email','password1','password2'] 
     
     
