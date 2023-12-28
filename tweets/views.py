@@ -2,13 +2,17 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404, JsonResponse
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.conf import settings
+from django.contrib import messages
+from django.contrib.auth import login, authenticate, logout
 
 from .forms import TweetForm, RegisterForm
 from .models import Tweet
 import random 
 
+
 ALLOWED_HOSTS = settings.ALLOWED_HOSTS
-    
+
+
 def home_view(request, *args, **kwargs):
     return render(request, "pages/home.html", context={}, status=200)
 
@@ -58,4 +62,16 @@ def tweet_detail_view(request, tweet_id, *args, **kwargs):    # output additiona
 def sign_up(request):
     if request.method == 'GET':
         form = RegisterForm()
-        return render(request, 'registration/register.html', { 'form': form})   
+        return render(request, 'registration/register.html', {'form': form})    
+   
+    if request.method == 'POST':
+        form = RegisterForm(request.POST) 
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.username = user.username.lower()
+            user.save()
+            messages.success(request, 'You have signed up successfully.')
+            login(request, user)
+            return redirect('/')
+        else:
+            return render(request, 'registration/register.html', {'form': form})
