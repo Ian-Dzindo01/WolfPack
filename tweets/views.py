@@ -5,7 +5,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 
-from .forms import TweetForm, RegisterForm
+from .forms import TweetForm, NewUserForm
 from .models import Tweet
 import random 
 
@@ -59,19 +59,18 @@ def tweet_detail_view(request, tweet_id, *args, **kwargs):    # output additiona
 
     return JsonResponse(data, status=status)
 
-def sign_up(request):
-    if request.method == 'GET':
-        form = RegisterForm()
-        return render(request, 'registration/register.html', {'form': form})    
-   
-    if request.method == 'POST':
-        form = RegisterForm(request.POST) 
-        if form.is_valid():
-            user = form.save(commit=False)
-            user.username = user.username.lower()
-            user.save()
-            messages.success(request, 'You have signed up successfully.')
-            login(request, user)
-            return redirect('/')
-        else:
-            return render(request, 'registration/register.html', {'form': form})
+
+def register_request(request):
+	if request.method == "POST":
+		form = NewUserForm(request.POST)
+          
+		if form.is_valid():
+			user = form.save()
+			login(request, user)
+			messages.success(request, "Registration successful." )
+			return redirect("/")
+          
+		messages.error(request, "Unsuccessful registration. Invalid information.")
+          
+	form = NewUserForm()
+	return render (request=request, template_name="registration/register.html", context={"register_form":form})
