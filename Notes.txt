@@ -2,6 +2,7 @@ Users:
     Login 
     Logout
     Email Verification
+    Social Media Registration Support
     MFA
 
 Tweets:
