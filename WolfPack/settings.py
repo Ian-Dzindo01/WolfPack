@@ -29,11 +29,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "crispy_bootstrap4",
     "tweets",
-    "crispy_forms",
-    "dal",
-    "dal_select2",
-    "users",
-    "todo"
+    "crispy_forms"
 ]
 
 SITE_ID = 1
@@ -127,3 +123,14 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
+
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_PORT = 25
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'ian.dzindo01@gmail.com'
+EMAIL_HOST_PASSWORD = 'notthatstupid'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'      # send data to shell. For testing purposes
