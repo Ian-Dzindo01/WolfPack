@@ -21,6 +21,7 @@ ALLOWED_HOSTS = ['127.0.0.1']
 
 INSTALLED_APPS = [
     "django.contrib.admin",
+    "django.contrib.sites",
     "django.contrib.auth",            # will use this for login and logout
     "django.contrib.contenttypes", 
     "django.contrib.sessions",
@@ -28,9 +29,13 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "crispy_bootstrap4",
     "tweets",
-    "crispy_forms"
-
+    "crispy_forms",
+    "dal",
+    "dal_select2",
+    "todo"
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

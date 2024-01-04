@@ -16,8 +16,8 @@ urlpatterns = [
     path('tweets/<int:tweet_id>', tweet_detail_view),
     path("logout", views.logout_request, name= "logout"),
     path("login", views.login_request, name="login"),
-    path("register/", register_request)
-    # path('',include('todo.urls'))
+    path("register/", register_request),
+    path('',include('todo.urls'))
     # path('',include('users.urls'))
 ]
 
