@@ -17,10 +17,10 @@ urlpatterns = [
     path("logout", views.logout_request, name= "logout"),
     path("login", views.login_request, name="login"),
     path("register/", register_request)
-    # path('',include('todo.urls')),
+    # path('',include('todo.urls'))
     # path('',include('users.urls'))
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)    
+                          document_root=settings.MEDIA_ROOT)
