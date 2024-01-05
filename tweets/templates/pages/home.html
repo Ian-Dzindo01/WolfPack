@@ -15,11 +15,11 @@ Wolfies
 
 <div class='row'>
     <div class='col-md-4 mx-auto col-10'>
-        <form class='form' id='tweet-create-form' method='POST' action='/create-tweet'>
-            {% csrf_token %}
+        <form class='form' id='tweet-create-form' method='POST' action='/create-tweet' enctype="multipart/form-data">
+            {% csrf_token %}    
             <input type="hidden" value="/" name="next">
             <textarea class="form-control" name="content" placeholder="Your Post..."></textarea>
-            <button type="submit" button="btn btn-primary">Post</button>
+            <button type="submit" button="btn btn-secondary">Post</button>
         </form>
     </div>
 </div>
