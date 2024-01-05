@@ -16,13 +16,13 @@ from .models import Tweet
 ALLOWED_HOSTS = settings.ALLOWED_HOSTS
 
 
-def home_view(request, *args, **kwargs):
+def home_view(request, *args, **kwargs):                               # render home page
     return render(request, "pages/home.html", context={}, status=200)
 
 
 def tweet_create_view(request, *arg, **kwargs):
-    form = TweetForm(request.POST, request.FILES)         # or None
-    next_url = request.POST.get("next") or None
+    form = TweetForm(request.POST or None)         # or None
+    next_url = request.POST.get("next") or None           # for redirect
 
     if form.is_valid():
         obj = form.save(commit=False)
@@ -38,7 +38,7 @@ def tweet_create_view(request, *arg, **kwargs):
     return render(request, 'components/form.html', context={"form":form})
 
 
-def tweet_list_view(request, *args, **kwargs):
+def tweet_list_view(request, *args, **kwargs):    # list out all tweets
     qs = Tweet.objects.all()
     tweets_list = [x.serialize() for x in qs]   # implement a real like function, working on rands now 
     data = {

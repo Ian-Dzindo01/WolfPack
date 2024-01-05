@@ -13,8 +13,8 @@ from django.contrib.auth.views import (
 )
     
 urlpatterns = [
-    path("admin/", admin.site.urls),
     path('', home_view ),
+    path("admin/", admin.site.urls),
     path('create-tweet', tweet_create_view),
     path('tweets', tweet_list_view),    
     path('tweets/<int:tweet_id>', tweet_detail_view),
@@ -25,8 +25,8 @@ urlpatterns = [
     path('password-reset-done/', PasswordResetDoneView.as_view(template_name='users/password_reset_done.html'),name='password_reset_done'),
     path('password-reset-confirm/<uidb64>/<token>/', PasswordResetConfirmView.as_view(template_name='users/password_reset_confirm.html'),name='password_reset_confirm'),
     path('password-reset-complete/',PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'),name='password_reset_complete')
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)       # get media files 
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
+# if settings.DEBUG:
+#     urlpatterns += static(settings.MEDIA_URL,
+#                           document_root=settings.MEDIA_ROOT)
