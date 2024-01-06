@@ -27,9 +27,6 @@ def tweet_create_view(request, *arg, **kwargs):
     if form.is_valid():
         obj = form.save(commit=False)
         obj.save()
-        # if request.is_ajax():                      # ajax is deprecated
-        #     return JsonResponse({}, status=201)    # 201 is for created items
-
 
         if next_url != None and url_has_allowed_host_and_scheme(next_url, ALLOWED_HOSTS):
             return redirect(next_url)

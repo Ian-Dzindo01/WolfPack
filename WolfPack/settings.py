@@ -26,8 +26,10 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes", 
     "django.contrib.sessions",
     "django.contrib.messages",
+    "django.contrib.staticfiles",    
     "crispy_bootstrap4",
     "tweets",
+    "profiles",
     "crispy_forms"
 ]
 
@@ -111,6 +113,8 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGIN_REDIRECT_URL = "/"
+
+STATIC_URL = "static/"  
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
