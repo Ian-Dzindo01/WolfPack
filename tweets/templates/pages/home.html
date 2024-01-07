@@ -38,16 +38,18 @@ Wolfies
     const myFormData = new FormData(myForm)
     const url = myForm.getAttribute("action")
     const method = myForm.getAttribute("method")
-
     const xhr = new XMLHttpRequest()
     xhr.open(method, url)
+    xhr.setRequestHeader("HTTP_X_REQUESTED_WITH", "XMLHttpRequest")
+    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest")
 
     xhr.onload = function() {
-        const serverResponse = xhr.response                 // httprequests response
-        const tweetsEl = document.getElementById("tweets")
-        LoadTweets(tweetsEl)
+        if (xhr.status === 200) {
+            const newTweet = xhr.response                 // httprequests response
+            const newTweetElement = formatTweetElement(newTweet)
+            console.log(newTweetElement)
+        }
     }
-
     xhr.send(myFormData)
  }
 
@@ -55,7 +57,7 @@ const tweetCreateFormEl = document.getElementById("tweet-create-form")
 
 tweetCreateFormEl.addEventListener("submit", handleTweetCreateFormDidSubmit)
 
-const tweetsEl = document.getElementById("tweets")  //documents JS stuff
+const tweetContainerElement = document.getElementById("tweets")  //documents JS stuff
 
 function LoadTweets(tweetsElement) {
     const xhr = new XMLHttpRequest()
@@ -82,7 +84,7 @@ function LoadTweets(tweetsElement) {
 xhr.send()
 }
 
-LoadTweets(tweetsEl)
+LoadTweets(tweetContainerElement)
 
 function handleDidLike (tweet_id, currentCount) {       
     console.log(tweet_id, currentCount)

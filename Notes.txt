@@ -22,5 +22,5 @@ Pages:
     Hashtags
     Communities
 
-PROBLEMS:
- - Registration does not automatically create a profile.
+TODO:
+
