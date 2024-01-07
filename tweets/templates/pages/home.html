@@ -35,9 +35,14 @@ Wolfies
     event.preventDefault()                          // prevent event before validation and submitting
     const myForm = event.target                     // return element on which the event occurred
     const myFormData = new FormData(myForm)         // form field
+
     const url = myForm.getAttribute("action")       // action to be performed when form submitted
     const method = myForm.getAttribute("method")    // how to send form data
+
     const xhr = new XMLHttpRequest()                // xhr - XMLHttpRequest 
+
+    const responseType = "json"
+    xhr.responseType = responseType
 
     xhr.open(method, url)                          // initialize request
     xhr.setRequestHeader("HTTP_X_REQUESTED_WITH", "XMLHttpRequest")           // additional metadata and context on given header
@@ -45,18 +50,18 @@ Wolfies
 
     xhr.onload = function() {
         if (xhr.status === 201) {
-            const newTweet = xhr.response           // response to the request        
-            const newTweetElement = formatTweetElement(newTweet)   // format tweet before sending
-            console.log(newTweetElement)            // test output
+            const newTweetJson = xhr.response           // response to the request     
+            const newTweetElement = formatTweetElement(newTweetJson)   // format tweet before sending
+            const ogHtml = tweetContainerElement.innerHTML
+            tweetContainerElement.innerHTML = newTweetElement + ogHtml
         }
     }
     xhr.send(myFormData)         // send request to server
  } 
 
-
+const tweetContainerElement = document.getElementById("tweets")  //documents JS stuff
 const tweetCreateFormEl = document.getElementById("tweet-create-form")
 tweetCreateFormEl.addEventListener("submit", handleTweetCreateFormDidSubmit)
-const tweetContainerElement = document.getElementById("tweets")  //documents JS stuff
 
 
 function LoadTweets(tweetsElement) {
@@ -68,8 +73,8 @@ function LoadTweets(tweetsElement) {
     xhr.responseType = responseType 
 
     xhr.open(method, url)
-    xhr.setRequestHeader("HTTP_X_REQUESTED_WITH", "XMLHttpRequest")
-    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest")
+    // xhr.setRequestHeader("HTTP_X_REQUESTED_WITH", "XMLHttpRequest")
+    // xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest")
     xhr.onload = function() {
         const serverResponse = xhr.response                 // httprequests response
         const listedItems = serverResponse.response        // grab all listed items 

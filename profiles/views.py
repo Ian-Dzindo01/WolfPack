@@ -9,6 +9,7 @@ def profile_detailed_view(request, username, *args, **kwargs):
         raise Http404
     
     profile_object = qs.first()
+    
     context = {
         "username": username,
         "profile": profile_obj
