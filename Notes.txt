@@ -22,5 +22,8 @@ Pages:
     Hashtags
     Communities
 
-TODO:
+TODO:   
+    - Refresh after posting new tweet
+    - Add urls for newly added profiles
+
 

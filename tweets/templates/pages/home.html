@@ -45,23 +45,22 @@ Wolfies
     xhr.responseType = responseType
 
     xhr.open(method, url)                          // initialize request
-    xhr.setRequestHeader("HTTP_X_REQUESTED_WITH", "XMLHttpRequest")           // additional metadata and context on given header
-    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest")
+    // xhr.setRequestHeader("HTTP_X_REQUESTED_WITH", "XMLHttpRequest")           // additional metadata and context on given header
+    // xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest")
 
     xhr.onload = function() {
-        if (xhr.status === 201) {
-            const newTweetJson = xhr.response           // response to the request     
-            const newTweetElement = formatTweetElement(newTweetJson)   // format tweet before sending
-            const ogHtml = tweetContainerElement.innerHTML
-            tweetContainerElement.innerHTML = newTweetElement + ogHtml
-        }
+        const newTweetJson = xhr.response           // response to the request     
+        const newTweetElement = formatTweetElement(newTweetJson)   // format tweet before sending
+        const ogHtml = tweetContainerElement.innerHTML
+        tweetContainerElement.innerHTML = newTweetElement + ogHtml
+        // myForm.reset()   
     }
     xhr.send(myFormData)         // send request to server
  } 
 
 const tweetContainerElement = document.getElementById("tweets")  //documents JS stuff
-const tweetCreateFormEl = document.getElementById("tweet-create-form")
-tweetCreateFormEl.addEventListener("submit", handleTweetCreateFormDidSubmit)
+// const tweetCreateFormEl = document.getElementById("tweet-create-form")
+// tweetCreateFormEl.addEventListener("submit", handleTweetCreateFormDidSubmit)
 
 
 function LoadTweets(tweetsElement) {

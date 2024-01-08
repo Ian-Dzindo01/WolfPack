@@ -8,7 +8,7 @@ class Tweet(models.Model):
     image = models.FileField(upload_to='images/', blank=True, null=True)
 
     class Meta:
-        ordering = ['-id']                # order of tweets
+        ordering = ['-id']                # order of tweets newest first
 
     def serialize(self):
         return {
