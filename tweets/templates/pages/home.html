@@ -18,7 +18,7 @@ Wolfies
         <form class='form' id='tweet-create-form' method='POST' action='/create-tweet'>
             {% csrf_token %}    
             <input type="hidden" value="/" name="next">
-            <textarea class="form-control" name="content" placeholder="Your Post..."></textarea>
+            <textarea required='required' class="form-control" name="content" placeholder="Your Post..."></textarea>
             <button type="submit" button="btn btn-secondary">Post</button>
         </form>
     </div>
