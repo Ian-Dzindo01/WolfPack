@@ -23,7 +23,6 @@ Pages:
     Communities
 
 TODO:   
-    - Refresh after posting new tweet
     - Add urls for newly added profiles
 
 

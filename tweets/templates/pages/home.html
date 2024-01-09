@@ -45,15 +45,12 @@ Wolfies
     xhr.responseType = responseType
 
     xhr.open(method, url)                          // initialize request
-    // xhr.setRequestHeader("HTTP_X_REQUESTED_WITH", "XMLHttpRequest")           // additional metadata and context on given header
-    // xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest")
 
     xhr.onload = function() {
         const newTweetJson = xhr.response           // response to the request     
         const newTweetElement = formatTweetElement(newTweetJson)   // format tweet before sending
         const ogHtml = tweetContainerElement.innerHTML
         tweetContainerElement.innerHTML = newTweetElement + ogHtml
-        // myForm.reset()   
     }
     xhr.send(myFormData)         // send request to server
  } 
@@ -72,7 +69,7 @@ function LoadTweets(tweetsElement) {
     xhr.responseType = responseType 
 
     xhr.open(method, url)
-    // xhr.setRequestHeader("HTTP_X_REQUESTED_WITH", "XMLHttpRequest")
+    // xhr.setRequestHeader("HTTP_X_REQUESTED_WITH", "XMLHttpRequest")             // additional metadata and context on given header
     // xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest")
     xhr.onload = function() {
         const serverResponse = xhr.response                 // httprequests response
